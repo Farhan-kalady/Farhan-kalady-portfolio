@@ -67,4 +67,4 @@ Displaying full-stack proficiency through your key builds:
 ## 5. Contact Information
 * [cite_start]**Email:** farhancherushola@gmail.com [cite: 2]
 * [cite_start]**Phone:** +91 9846465260 [cite: 4]
-* [cite_start]**Location:** Kerala, India [cite: 11, 13]
+* [cite_start]**Location:** Malappuram, Kerala, India [cite: 11, 13]
