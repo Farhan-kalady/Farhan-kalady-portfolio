@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 
 const Contact = () => {
