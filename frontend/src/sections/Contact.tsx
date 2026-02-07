@@ -1,7 +1,39 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setStatus('loading');
+
+        try {
+            const apiBase = import.meta.env.VITE_API_BASE_URL || '/api';
+            await axios.post(`${apiBase}/contact`, formData);
+            setStatus('success');
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            setTimeout(() => setStatus('idle'), 5000);
+        } catch (err: any) {
+            setStatus('error');
+            setErrorMessage(err.response?.data?.message || 'Something went wrong. Please try again later.');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    };
+
     return (
         <section id="contact" className="min-h-screen py-20 px-10 md:px-20 bg-slate-950">
             <div className="max-w-6xl mx-auto">
@@ -57,13 +89,17 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         className="bg-slate-900 p-10 rounded-3xl border border-slate-800 space-y-6 shadow-2xl shadow-blue-500/5"
-                        onSubmit={(e) => e.preventDefault()}
+                        onSubmit={handleSubmit}
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label className="block text-slate-400 font-mono text-xs uppercase mb-2 tracking-widest">Your Name</label>
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
                                     placeholder="Farhan K"
                                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all font-sans"
                                 />
@@ -72,6 +108,10 @@ const Contact = () => {
                                 <label className="block text-slate-400 font-mono text-xs uppercase mb-2 tracking-widest">Email Address</label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                     placeholder="email@example.com"
                                     className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all font-sans"
                                 />
@@ -81,6 +121,10 @@ const Contact = () => {
                             <label className="block text-slate-400 font-mono text-xs uppercase mb-2 tracking-widest">Subject</label>
                             <input
                                 type="text"
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleChange}
+                                required
                                 placeholder="Let's collaborate!"
                                 className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all font-sans"
                             />
@@ -89,17 +133,36 @@ const Contact = () => {
                             <label className="block text-slate-400 font-mono text-xs uppercase mb-2 tracking-widest">Message</label>
                             <textarea
                                 rows={5}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
                                 placeholder="Tell me about your project..."
                                 className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-4 text-white focus:border-blue-500 outline-none transition-all font-sans resize-none"
                             ></textarea>
                         </div>
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-5 rounded-xl transition-all flex items-center justify-center space-x-3 group shadow-lg shadow-blue-500/20"
+                            disabled={status === 'loading'}
+                            className={`w-full ${status === 'loading' ? 'bg-blue-800' : 'bg-blue-500 hover:bg-blue-600'} text-white font-bold py-5 rounded-xl transition-all flex items-center justify-center space-x-3 group shadow-lg shadow-blue-500/20`}
                         >
-                            <span>Send Message</span>
-                            <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            {status === 'loading' ? (
+                                <Loader2 size={18} className="animate-spin" />
+                            ) : status === 'success' ? (
+                                <CheckCircle2 size={18} />
+                            ) : status === 'error' ? (
+                                <AlertCircle size={18} />
+                            ) : (
+                                <Send size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            )}
+                            <span>
+                                {status === 'loading' ? 'Sending...' : status === 'success' ? 'Message Sent!' : status === 'error' ? 'Failed to Send' : 'Send Message'}
+                            </span>
                         </button>
+
+                        {status === 'error' && (
+                            <p className="text-red-400 text-sm text-center font-medium">{errorMessage}</p>
+                        )}
                     </motion.form>
                 </div>
             </div>
