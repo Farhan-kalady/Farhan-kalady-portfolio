@@ -1,5 +1,4 @@
-import React from 'react';
-import { Github, Linkedin, Mail, Phone, Home, User, Briefcase, GraduationCap, Code, Award, MessageSquare } from 'lucide-react';
+import { Github, Linkedin, Mail, Home, User, Briefcase, GraduationCap, Code, Award, MessageSquare } from 'lucide-react';
 import profileImg from '../assets/profile.jpg';
 
 const Sidebar = () => {
