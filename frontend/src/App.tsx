@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import Sidebar from './components/Sidebar'
+import MobileHeader from './components/MobileHeader'
 import Hero from './sections/Hero'
 import Education from './sections/Education'
 import Skills from './sections/Skills'
@@ -8,15 +10,22 @@ import Contact from './sections/Contact'
 import profileImg from './assets/profile.jpg';
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <div className="flex bg-slate-950 min-h-screen font-sans selection:bg-blue-500/30">
-      <Sidebar />
-      <main className="flex-1 ml-64 overflow-x-hidden">
+      <MobileHeader isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+      <Sidebar isOpen={isMenuOpen} onClose={closeMenu} />
+
+      <main className="flex-1 lg:ml-64 overflow-x-hidden pt-16 lg:pt-0">
         <Hero />
 
-        <section id="about" className="min-h-screen py-20 px-10 md:px-20 bg-slate-900">
+        <section id="about" className="min-h-screen py-20 px-6 md:px-20 bg-slate-900">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold text-white mb-10 flex items-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-10 flex items-center">
               <span className="text-blue-500 mr-4 font-mono">01.</span> About Me
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -33,7 +42,7 @@ function App() {
                   I also have a strong fascination with AI and Data Science, constantly exploring how intelligence can be integrated into modern web applications.
                 </p>
               </div>
-              <div className="relative group">
+              <div className="relative group max-w-xs mx-auto md:max-w-none">
                 <div className="absolute inset-0 border-2 border-blue-500 rounded-lg translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
                 <div className="relative bg-slate-800 rounded-lg overflow-hidden h-80 flex items-center justify-center grayscale hover:grayscale-0 transition-all">
                   <img src={profileImg} alt="Mohammed Farhan K" className="w-full h-full object-cover object-top" />

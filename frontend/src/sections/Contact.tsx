@@ -36,9 +36,9 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="min-h-screen py-20 px-10 md:px-20 bg-slate-950">
+        <section id="contact" className="min-h-screen py-20 px-6 md:px-20 bg-slate-950">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-white mb-12 flex items-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 flex items-center">
                     <span className="text-blue-500 mr-4 font-mono">06.</span> Get In Touch
                 </h2>
 
@@ -89,7 +89,7 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="bg-slate-900 p-10 rounded-3xl border border-slate-800 space-y-6 shadow-2xl shadow-blue-500/5"
+                        className="bg-slate-900 p-6 md:p-10 rounded-3xl border border-slate-800 space-y-6 shadow-2xl shadow-blue-500/5"
                         onSubmit={handleSubmit}
                     >
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

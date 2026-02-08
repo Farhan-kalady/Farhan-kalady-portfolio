@@ -18,33 +18,33 @@ const Hero = () => {
                 </svg>
             </div>
 
-            <div className="z-10 text-center px-4 max-w-4xl">
+            <div className="z-10 text-center px-6 max-w-4xl pt-20 lg:pt-0">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-blue-500 font-mono text-lg mb-4 tracking-widest uppercase">Hi, my name is</h2>
-                    <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tight">
+                    <h2 className="text-blue-500 font-mono text-base md:text-lg mb-4 tracking-widest uppercase">Hi, my name is</h2>
+                    <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white mb-6 tracking-tight">
                         Mohammed Farhan K.
                     </h1>
-                    <h3 className="text-4xl md:text-6xl font-bold text-slate-400 mb-8 leading-tight">
+                    <h3 className="text-2xl sm:text-4xl md:text-6xl font-bold text-slate-400 mb-8 leading-tight">
                         I build digital experiences for the future.
                     </h3>
-                    <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
+                    <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed mb-10">
                         MCA Student at Mar Athanasius College of Engineering specializing in Full-Stack Development,
                         AI, and Data Science. I transform complex problems into elegant, high-performance solutions.
                     </p>
-                    <div className="flex justify-center space-x-6">
+                    <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
                         <a
                             href="#projects"
-                            className="px-10 py-4 bg-transparent border-2 border-blue-500 text-blue-500 font-bold rounded-lg hover:bg-blue-500/10 transition-all duration-300"
+                            className="w-full sm:w-auto px-10 py-4 bg-transparent border-2 border-blue-500 text-blue-500 font-bold rounded-lg hover:bg-blue-500/10 transition-all duration-300 text-center"
                         >
                             View My Work
                         </a>
                         <a
                             href="#contact"
-                            className="px-10 py-4 bg-blue-500 border-2 border-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/20"
+                            className="w-full sm:w-auto px-10 py-4 bg-blue-500 border-2 border-blue-500 text-white font-bold rounded-lg hover:bg-blue-600 transition-all duration-300 shadow-lg shadow-blue-500/20 text-center"
                         >
                             Let's Talk
                         </a>

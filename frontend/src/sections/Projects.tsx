@@ -34,9 +34,9 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="min-h-screen py-20 px-10 md:px-20 bg-slate-950">
+        <section id="projects" className="min-h-screen py-20 px-6 md:px-20 bg-slate-950">
             <div className="max-w-6xl mx-auto">
-                <h2 className="text-4xl font-bold text-white mb-12 flex items-center">
+                <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 flex items-center">
                     <span className="text-blue-500 mr-4 font-mono">04.</span> Featured Work
                 </h2>
 
